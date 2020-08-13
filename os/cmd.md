@@ -1,0 +1,82 @@
+# 编程杂记
+
+## ar、nm、objdump
+
+* ar 操作.a、.so等库文件：## archive--档案、存档
+
+    ```bash
+    ar -rv test.a test.o ## 根据后面的.o文件创建.a库，如果包已经存在，则替换其内部已存在的模块，不存在的模块则添加
+    ar -x test.a    ## 解包test.a库
+    ar -t libname.a ## 显示库的模块表清单
+    ```
+
+* nm 查看目标文件的符号清单：List symbols in [file(s)] (a.out by default).
+
+    ```bash
+    nm -a main.o    ## 查看包含调试符号在内的完整符号表，一般简单的执行 nm main.o 查看源文件中涉及的符号即可
+    nm -u main.o    ## 查看未定义的符号
+    ```
+
+* objdump 功能强大，包括前两个命令的很多供能:Display information from object。
+
+    ```bash
+    objdump -h main.o ##查看文件头部信息
+    objdump -t main.o ##查看符号表
+    objdump -d main.o ##反汇编，查看二进制机器码
+    ```
+
+## __attribute__((constructor))
+
+函数注册
+
+## \_\_FUNCTION__
+
+* \_\_func__ 是C++11与C99引入的，其并非宏定义，而是作为一个隐式申明的标识符，就像紧跟在每个函数定义的 { 之后的声明一样。
+
+    ```C
+    static const char __func__[] = "function_name";
+    //这里的functions_name是词法封闭函数的名称即函数的简单名称。
+    ```
+
+* \_\_FUNCTION__ 是一些C编译器支持的与标准扩展。不同编译器可能有不同的版本（尤其区别与windows)
+* \_\_PRETTY_FUNCTION__ 是一个gcc扩展，大致类似\_\_FUNCTION__，但是其打印的内容包含函数完整声明，即包含返参类型、入参类型信息等。
+
+## linux环境如何输出彩色文字
+
+## 查看当前使用的shell
+
+* echo $0
+* echo $SHELL
+
+## 时钟同步
+
+1. NTP
+
+    ```txt
+    网络时间协议（Network Time Protocol）是 GNU/Linux 系统通过 Internet 时间服务器同步系统软件时钟的最常见方法。设计时考虑到了各种网络延迟，通过公共网络同步时，误差可以降低到 10 毫秒以内；通过本地网络同步时，误差可以降低到 1 毫秒
+    ```
+
+2. systemd-timesyncd 进程
+
+    systemd-timesyncd是一个用于跨网络同步系统时钟的守护服务。它实现了一个 SNTP 客户端。与 NTP 的复杂实现相比，这个服务简单的多，它只专注于从远程服务器查询然后同步到本地时钟。
+
+3. Arch Linux 时钟同步
+
+    >sudo timedatectl set-ntp true
+
+    ```shell
+    [psj@Arch ~]$ timedatectl
+                Local time: Wed 2020-08-12 00:42:23 CST
+            Universal time: Tue 2020-08-11 16:42:23 UTC
+                    RTC time: Tue 2020-08-11 16:42:23
+                    Time zone: Asia/Shanghai (CST, +0800)
+    System clock synchronized: yes
+                NTP service: active
+            RTC in local TZ: no
+    ```
+
+4. xclock 同步时间并每间隔1s刷新
+
+    >sudo pacman -S xorg-xclock
+
+    >xclock -d -update 1 -strftime %T &
