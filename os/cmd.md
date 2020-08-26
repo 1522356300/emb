@@ -25,9 +25,43 @@
     objdump -d main.o ##反汇编，查看二进制机器码
     ```
 
-## __attribute__((constructor))
+## GNU C 的 \_\_attribute__ 机制
+
+* \_\_attribute__ 用于设置属性，包括：Function Attribute, Variable Attribute, Type Attribute
+((constructor))
+* 语法格式为：\_\_attribute__ ((attribute-list)) , 括号中的内容可以前后加下划线
+* aligned, 使设置对象占用更多的空间,(同时取决于链接器最大支持字节对齐)
+    ```C
+    typedef int int32_t __attribute__ ((aligned(8)))
+    ```
+* packed, 减小对象占用的空间
+    ```C
+
+    ```
+* at 将便来给你或者函数绝对定位到FLASH(用于固化信息，将出场设置写入flash）或者RAM中（一般用于数据量比较大缓存）
+    ```C
+    const u16 gflashdata__attribute__((at(0x0800F000))) = 0xFFFF;
+    u8 USART2_RX_BUF[USART2_REC_LEN] __attribute__ ((at(0X20001000)));
+    ```
+* section 将变量,函数放入指定段
+    ```C
+    /* in RO section */
+    const int descriptor[3] __attribute__ ((section ("descr"))) = { 1,2,3 };
+    /* in RW section */
+    long long rw[10] __attribute__ ((section ("RW")));
+    /* in ZI section *
+    long long altstack[10] __attribute__ ((section ("STACK"), zero_init));*/
+
+    u8 FileAddr[100] __attribute__ ((section ("FILE_RAM"), zero_init,aligned(4)));
+    ```
+* transparent_union
+* unused
+* deprecated
+* may_alias
 
 函数注册
+
+## __typeof
 
 ## \_\_FUNCTION__
 
@@ -42,6 +76,8 @@
 * \_\_PRETTY_FUNCTION__ 是一个gcc扩展，大致类似\_\_FUNCTION__，但是其打印的内容包含函数完整声明，即包含返参类型、入参类型信息等。
 
 ## linux环境如何输出彩色文字
+
+* 查看源代码 [日志彩色打印]:(http://github.com/1522356300/emb.github.io/code/color_print))
 
 ## 查看当前使用的shell
 
