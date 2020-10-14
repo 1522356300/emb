@@ -115,7 +115,26 @@ AGV
     ```sh
     [psj@Arch ~]$ rostopic pub /turtle1/cmd_vel geometry_msgs/Twist -r 1 -- '[2.0, 0.0, 0.0]' '[0.0, 0.0, -1.8]'  ##发送msg控制小乌龟， -r 持续发送，1 发送频率
     ```
-7. 其余cmd
+
+7. 服务 Service
+    ```sh
+    [psj@Arch ~]$ rosservice list   #查看服务
+    /clear
+    /kill
+    /reset
+    /rosout/get_loggers
+    /rosout/set_logger_level
+    /spawn
+    /teleop_turtle/get_loggers
+    /teleop_turtle/set_logger_level
+    /turtle1/set_pen
+    /turtle1/teleport_absolute
+    /turtle1/teleport_relative
+    /turtlesim/get_loggers
+    /turtlesim/set_logger_level
+    [psj@Arch ~]$ rosservice call clear #可以清楚缓存（小乌龟已生成的路径图）
+    ```
+8. 其余cmd
     * rqt_graph 图形化
         ```shell
         [psj@Arch ~]$ rosrun rqt_graph rqt_graph  ##启动UI界面查看 ROS信息，包括 node，topic
