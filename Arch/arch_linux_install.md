@@ -41,3 +41,10 @@
     
     ```
 
+## 网络配置
+
+### NetworkManager
+```sh
+systemctl enable NetworkManager.service ##设置开机自动启动NetworkManager服务
+nm-connection-editor    ##启动配置界面
+``` 
