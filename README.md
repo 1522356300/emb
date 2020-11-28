@@ -2,7 +2,6 @@
 - [个人档案](person.md)
 - [机械](Mechanical/readme.md)
 - [电子电路](Electronic/readme.md)
-    - [硬件基础](Electronic/Hardware/readme.md)
 - [计算机](Computer/readme.md)
     - [操作系统原理](Computer/OS/readme.md)
     - [linux内核实现](Computer/Kernel/readme.md)
