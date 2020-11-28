@@ -1,19 +1,13 @@
-# emb.github.io
-仅以此记录自己的一些学习笔记与心得。
-
-## 个人简介
-### 姓名 ：彭仕杰
-### 经历 ：
-<table>
-<tr><td>2018~</td><td>中兴通讯股份有限公司</td><td>嵌入式软件系统工程师</td></tr>
-<tr><td>2016~2018</td><td>深圳市德立达科技有限公司</td><td>嵌入式工程师</td></tr>
-<tr><td>2014~2015</td><td>中铁工程机械研究设计院</td><td>机械工程师</td></tr>
-<tr><td>2010~2014</td><td>中南大学</td><td>机械设计制造及其自动化(本科)</td></tr>
-</table>
-
-
-### 联系方式：
-* email: *psj1522356300@163.com*
-* tele : *18312529540*
-
-
+# 目录
+- [个人档案](person.md)
+- [机械](Mechanical/readme.md)
+- [电子电路](Electronic/readme.md)
+    - [硬件基础](Electronic/Hardware/readme.md)
+- [计算机](Computer/readme.md)
+    - [操作系统原理](Computer/OS/readme.md)
+    - [linux内核实现](Computer/Kernel/readme.md)
+    - [编程语言](Computer/Language/readme.md)
+    - [编译系统](Computer/Compile/readme.md)
+    
+- [**机器人Robot**](Robot/readme.md)
+    
